@@ -113,6 +113,10 @@ $(document).ready(function() {
             $("#Inventario .subseccion").addClass("hidden");
             $("#Inventario_Articulos").removeClass("hidden");
         }
+        // Si es Nube, cargar backups
+        if (id === 'Nube' && typeof cargarListaBackups === 'function') {
+            cargarListaBackups();
+        }
     };
 
     // Función para mostrar subsecciones dentro de Inventario

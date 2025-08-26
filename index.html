@@ -37,18 +37,49 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li id="nav-inicio"></li>
-                    
                     <li id="nav-inventario"><a href="#" onclick="mostrarSeccion('Inventario')">INVENTARIO</a></li>
                     <li id="nav-factura"><a href="#" onclick="mostrarSeccion('Factura')">FACTURA</a></li>
+
                 </ul>
                 </div>
             </div>
         </nav>
     
+
         <section class="seccion-principal" id="Inventario">
+
             <div class="container-botones">
-                        <button class="nav_button" type="button" onclick="mostrarSubseccion('Inventario','Inventario_Articulos')">Artículos</button>
-                        <button class="nav_button" type="button" onclick="mostrarSubseccion('Inventario','Inventario_Proveedores')">Proveedores</button>
+                <button class="nav_button" type="button" onclick="mostrarSubseccion('Inventario','Inventario_Articulos')">Artículos</button>
+                <button class="nav_button" type="button" onclick="mostrarSubseccion('Inventario','Inventario_Proveedores')">Proveedores</button>
+                                    <button class="nav_button style="margin-left:40px;" onclick="$('#modalClaveBackup').modal('show');"><i class="fa fa-cloud"></i> Crear Backup</button>
+            </div>
+
+                            <!-- Modal para pedir clave de backup -->
+                            <div class="modal fade" id="modalClaveBackup" tabindex="-1" role="dialog" aria-labelledby="modalClaveBackupLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="modalClaveBackupLabel"><i class="fa fa-lock"></i> Confirmar Backup</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="inputClaveBackup">Introduce la contraseña para crear el backup:</label>
+                                                <input type="password" class="form-control" id="inputClaveBackup" placeholder="Contraseña" autocomplete="off">
+                                            </div>
+                                            <div id="msgClaveBackup" class="text-danger" style="display:none;"></div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                            <button type="button" class="btn btn-primary" onclick="enviarBackupConClave()">Crear Backup</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Mensaje de backup eliminado, ahora solo se usa alert -->
+                </div>
             </div>
 
             <section class="subseccion Inventario_Articulos" id="Inventario_Articulos">
@@ -295,5 +326,6 @@
 
     <script src="js/ActivarSeccion.js"></script>
     <script src="js/articulos.js"></script>
+    <script src="js/nube.js"></script>
 </body>
 </html>
