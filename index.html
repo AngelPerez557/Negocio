@@ -1,0 +1,299 @@
+    <!-- Select2 eliminado porque ya no se usa -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <?php // Cargar CSS correctamente en PHP ?>
+    <link rel="stylesheet" href="css/bootstrap-3.4.1-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="css/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+    
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                <button
+                    type="button"
+                    class="navbar-toggle collapsed"
+                    data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1"
+                    aria-expanded="false"
+                >
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <i class="fas fa-laptop"></i> ADigital
+                </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li id="nav-inicio"></li>
+                    
+                    <li id="nav-inventario"><a href="#" onclick="mostrarSeccion('Inventario')">INVENTARIO</a></li>
+                    <li id="nav-factura"><a href="#" onclick="mostrarSeccion('Factura')">FACTURA</a></li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+    
+        <section class="seccion-principal" id="Inventario">
+            <div class="container-botones">
+                        <button class="nav_button" type="button" onclick="mostrarSubseccion('Inventario','Inventario_Articulos')">Artículos</button>
+                        <button class="nav_button" type="button" onclick="mostrarSubseccion('Inventario','Inventario_Proveedores')">Proveedores</button>
+            </div>
+
+            <section class="subseccion Inventario_Articulos" id="Inventario_Articulos">
+                                <!-- Buscador y Tabla de Artículos -->
+                                <div class="row" style="margin-top:20px;">
+                                    <div class="col-md-4" style="display:flex;align-items:center;">
+                                        <input type="text" id="buscador-articulos" class="form-control" placeholder="Buscar por nombre o código de barra..." style="width:100%;">
+                                    </div>
+                                    <div class="col-md-8 text-right">
+                                        <button class="btn btn-success" onclick="abrirModalArticulo()"><i class="fa fa-plus"></i> Agregar artículo</button>
+                                    </div>
+                                </div>
+                                <div class="table-responsive" style="margin-top:10px;">
+                                    <table class="table table-bordered table-striped" id="tabla-articulos">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Código Barra</th>
+                                                <th>Stock</th>
+                                                <th>Precio Venta</th>
+                                                <th>Precio Costo</th>
+                                                <th>Proveedor</th>
+                                                                <th>Tipo</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                                <!-- Modal Agregar/Editar Artículo -->
+                                <div class="modal fade" id="modalArticulo" tabindex="-1" role="dialog" aria-labelledby="modalArticuloLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="modalArticuloLabel">Agregar/Editar Artículo</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form id="formArticulo">
+                                                    <input type="hidden" id="articulo-id">
+                                                    <div class="form-group">
+                                                        <label for="articulo-nombre">Nombre</label>
+                                                        <input type="text" class="form-control" id="articulo-nombre" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="articulo-codigo">Código de Barra</label>
+                                                        <input type="text" class="form-control" id="articulo-codigo" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="articulo-stock">Stock</label>
+                                                        <input type="number" class="form-control" id="articulo-stock" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="articulo-precioventa">Precio Venta</label>
+                                                        <input type="number" step="0.01" class="form-control" id="articulo-precioventa" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="articulo-preciocosto">Precio Costo</label>
+                                                        <input type="number" step="0.01" class="form-control" id="articulo-preciocosto" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="articulo-proveedor">Proveedor</label>
+                                                        <select class="form-control" id="articulo-proveedor" required></select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="articulo-esgravado">¿Es gravado?</label>
+                                                        <select class="form-control" id="articulo-esgravado">
+                                                            <option value="1">Sí</option>
+                                                            <option value="0">No</option>
+                                                        </select>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                <button type="button" class="btn btn-primary" onclick="guardarArticulo()">Guardar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Fin Modal -->
+            </section>
+
+            <section class="subseccion Inventario_Proveedores" id="Inventario_Proveedores">
+                                
+                                <div class="row" style="margin-top:20px;">
+                                    <div class="col-md-4" style="display:flex;align-items:center;">
+                                        <input type="text" id="buscador-proveedores" class="form-control" placeholder="Buscar proveedor..." style="width:100%;">
+                                    </div>
+                                    <div class="col-md-8 text-right">
+                                        <button class="btn btn-success" onclick="abrirModalProveedor()"><i class="fa fa-plus"></i> Agregar proveedor</button>
+                                    </div>
+                                </div>
+                                <div class="table-responsive" style="margin-top:10px;">
+                                    <table class="table table-bordered table-striped" id="tabla-proveedores">
+                                        <thead>
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Contacto</th>
+                                                <th>Teléfono</th>
+                                                <th>Dirección</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+
+                                <!-- Modal Agregar/Editar Proveedor -->
+                                <div class="modal fade" id="modalProveedor" tabindex="-1" role="dialog" aria-labelledby="modalProveedorLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="modalProveedorLabel">Agregar/Editar Proveedor</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form id="formProveedor">
+                                                    <input type="hidden" id="proveedor-id">
+                                                    <div class="form-group">
+                                                        <label for="proveedor-nombre">Nombre</label>
+                                                        <input type="text" class="form-control" id="proveedor-nombre" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="proveedor-contacto">Contacto</label>
+                                                        <input type="text" class="form-control" id="proveedor-contacto" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="proveedor-telefono">Teléfono</label>
+                                                        <input type="text" class="form-control" id="proveedor-telefono" required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="proveedor-direccion">Dirección</label>
+                                                        <input type="text" class="form-control" id="proveedor-direccion" required>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                <button type="button" class="btn btn-primary" onclick="guardarProveedor()">Guardar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Fin Modal -->
+            </section>
+        </section>
+
+        <section class="seccion-principal hidden" id="Factura">
+            <div class="container-botones">
+                        <button class="nav_button" type="button" onclick="mostrarSubseccion('Factura','Factura_Ver')">Buscar Factura</button>
+                        <button class="nav_button" type="button" onclick="mostrarSubseccion('Factura','Factura_Hacer')">Factura Nueva</button>
+            </div>
+
+            <section class="subseccion Factura_Ver " id="Factura_Ver">
+                                <form id="formBuscarFactura" class="form-inline" style="margin-bottom:20px;">
+                                    <div class="form-group">
+                                        <label for="buscar-fecha">Fecha:</label>
+                                        <input type="date" id="buscar-fecha" class="form-control" required>
+                                    </div>
+                                    <div class="form-group" style="margin-left:10px;">
+                                        <label for="buscar-hora">Hora:</label>
+                                        <input type="time" id="buscar-hora" class="form-control">
+                                    </div>
+                                      <button type="submit" class="btn btn-primary" style="margin-left:10px;">Buscar</button>
+                                      <button type="button" class="btn btn-default" id="limpiar-busqueda-factura" style="margin-left:10px;">Limpiar</button>
+                                </form>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped" id="tabla-buscar-facturas">
+                                        <thead>
+                                            <tr>
+                                                <th># Factura</th>
+                                                <th>Fecha</th>
+                                                <th>Hora</th>
+                                                <th>Total</th>
+                                                <th>Método Pago</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+            </section>
+
+            <section class="subseccion Factura_Hacer hidden" id="Factura_Hacer">
+                                <div class="panel panel-default" style="max-width:900px;margin:auto;">
+                                    <div class="panel-body">
+                                        <form id="formFacturaNueva" autocomplete="off">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label for="factura-metodo">Método de Pago</label>
+                                                    <select id="factura-metodo" class="form-control" required></select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for="factura-monto">Monto Recibido</label>
+                                                    <input type="number" min="0" step="0.01" id="factura-monto" class="form-control" required>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label>&nbsp;</label>
+                                                    <button type="button" class="btn btn-success btn-block" onclick="guardarFacturaNueva()"><i class="fa fa-save"></i> Guardar Factura</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label>Agregar Artículo</label>
+                                                                            <div class="input-group" style="width:100%; margin-top:18px;">
+                                                                            <input type="text" id="buscador-articulo-factura" class="form-control" placeholder="Buscar por nombre o código de barra..." style="width:40%;max-width:300px;">
+                                                                            <select id="factura-articulo" class="form-control" style="width:40%"></select>
+                                                                            <input type="number" min="1" id="factura-cantidad" class="form-control" placeholder="Cantidad" style="width:80px; display:inline-block;" value="1">
+                                                                            <button class="btn btn-primary" type="button" onclick="agregarArticuloFactura()" style="margin-left:10px;"><i class="fa fa-plus"></i> Agregar</button>
+                                                                        </div>
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive" style="margin-top:15px;">
+                                            <table class="table table-bordered table-striped" id="tabla-factura-detalle">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Artículo</th>
+                                                        <th>Código Barra</th>
+                                                        <th>Precio Unitario</th>
+                                                        <th>Cantidad</th>
+                                                        <th>Subtotal</th>
+                                                        <th>Acciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th colspan="4" class="text-right">Total</th>
+                                                        <th id="factura-total">L. 0.00</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+            </section>
+        </section>
+    
+
+
+    <script src="js/ActivarSeccion.js"></script>
+    <script src="js/articulos.js"></script>
+</body>
+</html>

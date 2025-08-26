@@ -1,0 +1,251 @@
+/* --- RESPONSIVE TABLES --- */
+@media (max-width: 767px) {
+  .table-responsive {
+    border: 0;
+  }
+  .table-responsive table {
+    width: 100%;
+    margin-bottom: 0;
+    background-color: transparent;
+  }
+  .table-responsive thead {
+    display: none;
+  }
+  .table-responsive tr {
+    display: block;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    background: #fff;
+    padding: 8px 0;
+  }
+  .table-responsive td {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border: none;
+    border-bottom: 1px solid #eee;
+    font-size: 1em;
+    position: relative;
+  }
+  .table-responsive td:last-child {
+    border-bottom: none;
+  }
+  .table-responsive td:before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #555;
+    min-width: 110px;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+}
+/* Fix para input de búsqueda de Select2 en Bootstrap modal */
+.select2-container--bootstrap .select2-search--dropdown .select2-search__field {
+  background: #fff !important;
+  color: #333 !important;
+  width: 100% !important;
+}
+.select2-container--bootstrap .select2-dropdown {
+  z-index: 9999 !important;
+}
+:root{
+  --color-primario: #0a2241;
+  --color-secundario: #4a90e2;
+  --color-texto: #e5dcc5;
+}
+
+/* Contenedor de los botones de navegación principales */
+.container-botones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin: 40px 0 30px 0;
+}
+
+/* Botones de navegación principales estilo barra superior */
+/* Botones de navegación principales estilo barra superior */
+.nav_button, .nav_selec {
+  background-color: var(--color-primario) !important;
+  color: var(--color-texto) !important;
+  border: none !important;
+  font-size: 1.89rem;
+  font-weight: 600;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+  transition: none !important;
+  animation: none !important;
+}
+/* Botones generales de navegación (barra superior) */
+.nav_button, .nav_selec {
+  background-color: var(--color-primario) !important;
+  color:var(--color-texto);
+  border: none !important;
+  border-radius: 7px !important;
+  padding: 13px 80px !important;
+  outline: none;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Botones de la sección inventario: tamaño normal Bootstrap */
+.container-botones .nav_button {
+  border-radius: 4px;
+  padding: 6px 20px ;
+  font-size: 2rem ;
+  box-shadow: none;
+  border-bottom: none ;
+  border-top: none ;
+  color: var(--color-texto);
+  transition: none !important;
+  animation: none !important;
+}
+.nav_button:not(:last-child), .nav_selec:not(:last-child) {
+  margin-right: 40px;
+}
+.nav_button:hover, .nav_button:focus, .nav_selec:hover, .nav_selec:focus {
+  background-color: var(--color-secundario) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.16);
+}
+
+/* Mostrar/ocultar secciones y subsecciones */
+.hidden {
+  display: none !important;
+}
+.seccion-principal {
+  margin-top: 80px;
+}
+.subseccion {
+  display: none;
+}
+.seccion-principal .subseccion {
+  display: none;
+}
+.seccion-principal .subseccion:not(.hidden) {
+  display: block;
+}
+
+
+
+/* ========================================
+   BARRA DE NAVEGACIÓN (NAVBAR)
+   ======================================== */
+
+/** Contenedor principal de la navbar */
+.navbar, .navbar-default, .navbar.navbar-default {
+  background-color: var(--color-primario) !important;  /* Fondo azul oscuro */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/** Botón hamburguesa para móviles */
+.navbar-toggle {
+  border-color: var(--color-texto);        /* Color del borde del botón */
+}
+
+/** Barras del botón hamburguesa */
+.navbar-toggle .icon-bar {
+  background-color: var(--color-texto);    /* Color de las barras */
+}
+
+/** Estilo base para todos los enlaces de navegación */
+.navbar-brand,
+.navbar-nav > li > a,
+.dropdown-toggle,
+.navbar-nav.navbar-right > li > a {
+  color: var(--color-texto) !important;    /* Color blanco para todos los enlaces */
+}
+
+/** Efecto hover para todos los enlaces */
+.navbar-nav > li > a:hover,
+.dropdown-toggle:hover,
+.navbar-nav.navbar-right > li > a:hover {
+  color: var(--color-hover) !important;           /* Color gris claro al hover */
+  background-color: var(--transparencia-clara) !important; /* Fondo semi-transparente */
+}
+
+/** Estilo para la página activa */
+.navbar-nav > .active > a {
+  background-color: var(--transparencia-media) !important; /* Fondo más opaco para activo */
+}
+
+.navbar-nav > .active > a:hover {
+  background-color: var(--transparencia-oscura) !important; /* Fondo aún más opaco al hover */
+}
+
+/** Estados del botón dropdown */
+.dropdown-toggle:focus,
+.dropdown-toggle:active,
+.dropdown.open .dropdown-toggle {
+  background-color: var(--transparencia-clara) !important; /* Fondo al hacer focus/active */
+}
+
+.dropdown.open .dropdown-toggle:hover {
+  background-color: var(--transparencia-media) !important; /* Fondo al hover cuando está abierto */
+}
+
+/* Contenedor del menú desplegable */
+.dropdown-menu {
+  background-color: var(--color-primario);              /* Fondo azul oscuro */
+  border: 1px solid var(--transparencia-media);        /* Borde semi-transparente */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);          /* Sombra para profundidad */
+}
+
+/* Enlaces del menú desplegable */
+.dropdown-menu > li > a {
+  color: var(--color-texto) !important;                 /* Color blanco para los enlaces */
+}
+
+/* Efectos hover en enlaces del dropdown */
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  color: var(--color-hover) !important;                /* Color gris al hover */
+  background-color: var(--transparencia-clara) !important; /* Fondo semi-transparente */
+}
+
+/* ===== DIVISOR DEL MENÚ ===== */
+.divider {
+  background-color: var(--transparencia-oscura);        /* Línea divisoria */
+  height: 1px;
+  margin: 9px 0;
+}
+
+/* ===== FORMULARIO DE BÚSQUEDA ===== */
+.navbar-form .btn {
+  background-color: var(--transparencia-media);  /* Fondo semi-transparente */
+  color: var(--color-texto);                    /* Texto blanco */
+  border: 1px solid var(--color-texto);         /* Borde blanco */
+}
+
+.navbar-form .btn:hover {
+  background-color: var(--color-texto);         /* Fondo blanco al hover */
+  color: var(--color-primario);                /* Texto azul oscuro al hover */
+}
+
+/* Botón seleccionado de navegación */
+.nav_selec {
+  background-color: var(--color-secundario) !important;
+  color: var(--color-primario) !important;
+  border: 2px solid var(--color-primario) !important;
+  margin-right: 10px;
+  margin-top: 20px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  outline: none;
+}
+.nav_selec:hover, .nav_selec:focus {
+  background-color: var(--color-primario) !important;
+  color: #fff !important;
+  border-color: var(--color-secundario) !important;
+}
