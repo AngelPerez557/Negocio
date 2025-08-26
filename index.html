@@ -49,11 +49,14 @@
         <section class="seccion-principal" id="Inventario">
 
             <div class="container-botones">
+            <!-- Reportes de ventas -->
+            
                 <button class="nav_button" type="button" onclick="mostrarSubseccion('Inventario','Inventario_Articulos')">Artículos</button>
                 <button class="nav_button" type="button" onclick="mostrarSubseccion('Inventario','Inventario_Proveedores')">Proveedores</button>
-                                    <button class="nav_button style="margin-left:40px;" onclick="$('#modalClaveBackup').modal('show');"><i class="fa fa-cloud"></i> Crear Backup</button>
+                <button class="nav_button" type="button" onclick="mostrarSubseccion('Inventario','Inventario_Reportes')">Reportes</button>
+                <button class="nav_button style="margin-left:40px;" onclick="$('#modalClaveBackup').modal('show');"><i class="fa fa-cloud"></i> Crear Backup</button>
+                
             </div>
-
                             <!-- Modal para pedir clave de backup -->
                             <div class="modal fade" id="modalClaveBackup" tabindex="-1" role="dialog" aria-labelledby="modalClaveBackupLabel">
                                 <div class="modal-dialog" role="document">
@@ -225,6 +228,59 @@
                                     </div>
                                 </div>
                                 <!-- Fin Modal -->
+            </section >
+
+            <section class="subseccion Inventario_Reportes" id="Inventario_Reportes" >
+                <div class="row" style="margin-top:30px;">
+                    <div class="col-md-3">
+                        <div class="panel panel-info">
+                            <div class="panel-heading text-center"><i class="fa fa-calendar-day"></i> Ventas Hoy</div>
+                            <div class="panel-body text-center">
+                                <h3 id="reporte-hoy">L. 0.00</h3>
+                                <div style="font-size:13px;">
+                                    <span class="label label-success">Gravadas:</span> <span id="reporte-hoy-gravado">L. 0.00</span><br>
+                                    <span class="label label-default">Exentas:</span> <span id="reporte-hoy-exento">L. 0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading text-center"><i class="fa fa-calendar-week"></i> Ventas Semana</div>
+                            <div class="panel-body text-center">
+                                <h3 id="reporte-semana">L. 0.00</h3>
+                                <div style="font-size:13px;">
+                                    <span class="label label-success">Gravadas:</span> <span id="reporte-semana-gravado">L. 0.00</span><br>
+                                    <span class="label label-default">Exentas:</span> <span id="reporte-semana-exento">L. 0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-success">
+                            <div class="panel-heading text-center"><i class="fa fa-calendar-alt"></i> Ventas Mes</div>
+                            <div class="panel-body text-center">
+                                <h3 id="reporte-mes">L. 0.00</h3>
+                                <div style="font-size:13px;">
+                                    <span class="label label-success">Gravadas:</span> <span id="reporte-mes-gravado">L. 0.00</span><br>
+                                    <span class="label label-default">Exentas:</span> <span id="reporte-mes-exento">L. 0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-warning">
+                            <div class="panel-heading text-center"><i class="fa fa-calendar"></i> Ventas Año</div>
+                            <div class="panel-body text-center">
+                                <h3 id="reporte-anio">L. 0.00</h3>
+                                <div style="font-size:13px;">
+                                    <span class="label label-success">Gravadas:</span> <span id="reporte-anio-gravado">L. 0.00</span><br>
+                                    <span class="label label-default">Exentas:</span> <span id="reporte-anio-exento">L. 0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
         </section>
 
